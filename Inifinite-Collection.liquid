@@ -1,0 +1,25 @@
+<div id="infinite-Loop" >
+    {%- for product in collection.products -%}
+        {%- render 'product-grid-item', product: product, grid_item_width: grid_item_width, per_row: per_row -%}
+    {%- else -%}
+    <div class="grid__item">
+        <p>{{ 'collections.general.no_matches' | t }}</p>
+    </div>
+    {%- endfor -%}
+</div>
+
+
+<div id="infinite-Pagination">
+    {% if paginate.next %}
+    <a href="{{ paginate.next.url }}">Lade mehr...</a>
+    {% endif %}  
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var endlessScroll = new Ajaxinate({
+      container: '#infinite-Loop',
+      pagination: '#infinite-Pagination'
+    });
+  });
+</script>
